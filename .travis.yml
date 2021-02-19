@@ -1,0 +1,10 @@
+services:
+- docker
+
+arch: 
+- arm64
+scripts:
+  - cd 20.0/fpm-alpine
+  - docker build -f Dockerfile -t packyzbq/nextcloud:20-fpm
+  - docker login -u $HUB_USERNAME -p $HUB_PASSWORD
+  - docker push packyzbq/nextcloud:20-fpm
