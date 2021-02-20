@@ -116,6 +116,7 @@ RUN a2enmod headers rewrite remoteip ;\
 
 ENV NEXTCLOUD_VERSION 20.0.7
 
+COPY nextcloud.conf /etc/apache2/sites-available/nextcloud.conf
 RUN set -ex; \
     fetchDeps=" \
         gnupg \
@@ -141,7 +142,9 @@ RUN set -ex; \
     chmod +x /usr/src/nextcloud/occ; \
     \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $fetchDeps; \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/*; \
+    cd /etc/apache2/sites-available/ && a2ensite nextcloud.conf; \
+    chmod 775 /var/www/nextcloud
 
 COPY *.sh upgrade.exclude /
 COPY config/* /usr/src/nextcloud/config/
