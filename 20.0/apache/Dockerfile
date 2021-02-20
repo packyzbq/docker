@@ -13,7 +13,7 @@ RUN set -ex; \
     rm -rf /var/lib/apt/lists/*; \
     \
     mkdir -p /var/spool/cron/crontabs; \
-    echo '*/5 * * * * php -f /var/www/html/cron.php' > /var/spool/cron/crontabs/www-data
+    echo '*/5 * * * * php -f /var/www/nextcloud/cron.php' > /var/spool/cron/crontabs/www-data
 
 # install the PHP extensions we need
 # see https://docs.nextcloud.com/server/stable/admin_manual/installation/source_installation.html
@@ -103,7 +103,7 @@ RUN { \
     chown -R www-data:root /var/www; \
     chmod -R g=u /var/www
 
-VOLUME /var/www/html
+VOLUME /var/www/nextcloud
 
 RUN a2enmod headers rewrite remoteip ;\
     {\

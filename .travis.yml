@@ -4,7 +4,7 @@ services:
 arch: 
 - arm64
 scripts:
-  - cd 20.0/fpm-alpine
-  - docker build -f Dockerfile -t packyzbq/nextcloud:20-fpm .
+  - cd 20.0/apache
+  - docker build -f Dockerfile -t packyzbq/nextcloud:20-apache .
   - docker login -u $HUB_USERNAME -p $HUB_PASSWORD
-  - docker push packyzbq/nextcloud:20-fpm
+  - docker push packyzbq/nextcloud:20-apache
